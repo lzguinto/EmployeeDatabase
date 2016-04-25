@@ -178,6 +178,9 @@ public class SearchDatabase extends AppCompatActivity {
                 }
             }
 
+            searchCursor.close();
+            db.close();
+
         } catch (SQLiteException e) {
 
             txtvwResult.setText("This database could not be found.");
@@ -303,6 +306,8 @@ public class SearchDatabase extends AppCompatActivity {
             db = employeeDatabaseHelper.getWritableDatabase();
             numRowsDeleted = employeeDatabaseHelper.deleteElement(db, whereToDelete, elementsToDelete);
             txtvwResult.setText(numRowsDeleted + " rows have been deleted.");
+
+            db.close();
 
         } catch (SQLiteException e) {
 
